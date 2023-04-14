@@ -4,7 +4,6 @@ from src.set_background import set_background
 from PIL import Image
 import numpy as np
 import cv2
-from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.resnet50 import ResNet50
 from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
 
@@ -18,6 +17,7 @@ upload= st.file_uploader("Carregue imagem para classificação", type=['png','jp
 c1, c2= st.columns(2)
 
 if upload is not None:
+
     img = Image.open(upload)
     x_raw = np.asarray(img)
     x_raw = cv2.resize(x_raw,(224, 224))
