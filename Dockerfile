@@ -4,12 +4,18 @@ WORKDIR /mlopsproject
 
 COPY requirements.txt .
 
-EXPOSE 5801
+COPY . .
 
 RUN pip install -r requirements.txt
 
-COPY . .
+EXPOSE 5801
 
-CMD ["streamlit run streamlit.py"]
+COPY . /mlopsproject
 
-#CMD ["/bin/bash", "-c", "/mlopsproject/start.bash && sleep 5 && streamlit run streamlit.py --server.port $PORT"]
+ENTRYPOINT [ "streamlit", "run","--server.port=8501", "--server.address=0.0.0.0"]
+
+CMD ["streamlit.py"]
+
+#docker build . -t mlopsproject       
+
+#docker run -p 8501:8501 mlopsproject:latest

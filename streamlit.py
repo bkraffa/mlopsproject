@@ -1,5 +1,4 @@
 import streamlit as st
-
 from src.set_background import set_background
 from PIL import Image
 import numpy as np
